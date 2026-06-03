@@ -33,6 +33,8 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
   - Includes debug information in the executable
   - If the program crashes, you see exactly which line
   - Without it you'd see strange numbers instead of line numbers
+- **-lm** - "Link math"
+  - If the program needs math functions and includes the math.h
 
   ## Run
 
