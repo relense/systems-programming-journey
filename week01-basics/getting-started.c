@@ -11,7 +11,13 @@ int main(int argc, [[maybe_unused]] char* argv[argc + 1]) {
     };
 
     for (size_t i = 0; i < 5; ++i) {
-        printf("element %zu is %g, \tits square is %g\n", i, A[i], A[i] * A[i]);
+        if(i) {
+            printf("element %zu is %g, \tits square is %g\n", i, A[i], A[i] * A[i]);
+        }
+    }
+
+    for (size_t i = 9; i <= 9; --i) {
+        printf("element is %zu\n", i);
     }
 
     return EXIT_SUCCESS;
