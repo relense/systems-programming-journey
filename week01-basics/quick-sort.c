@@ -1,15 +1,14 @@
 #include <stdio.h>
 
-void quickSort (double unordered_array[], size_t pivot_index, size_t array_size) {
-    
-    
-}
+void quickSort (double unordered_array[], size_t start, size_t end) {
 
-void partition(double unordered_array[], size_t start, size_t end, size_t pivot_index) {
+    if(start >= end) {
+        return;
+    }
+
     size_t small_ends = start;
     size_t big_ends = end;
-    size_t array_size = end - start + 1;
-    double pivot_value = unordered_array[pivot_index];
+    double pivot_value = unordered_array[start + (end - start) / 2];
 
     size_t i = start;
     while (i <= big_ends) {
@@ -23,15 +22,30 @@ void partition(double unordered_array[], size_t start, size_t end, size_t pivot_
             double temp = unordered_array[i];
              unordered_array[i] = unordered_array[big_ends];
              unordered_array[big_ends] = temp;
-            --big_ends;
-        }    
+             if(big_ends > 0) {
+                 --big_ends;
+             } else {
+                ++i;
+             }
+        }       
     }
 
-    for(size_t i = small_ends; i <= big_ends; ++i) {
-        unordered_array[i] = pivot_value;
+    if(big_ends >= small_ends  && big_ends <= end) {
+        for(size_t i = small_ends; i <= big_ends; ++i) {
+            unordered_array[i] = pivot_value;
+        }
     }
+
+
+    if(small_ends > start) {
+        quickSort(unordered_array, start, small_ends - 1);
+    }
+
+    if(big_ends > start && big_ends < end) { 
+        quickSort(unordered_array, big_ends + 1, end);
+    }
+    
 }
-
 
 
 int test(double const array[], size_t array_size) {
@@ -54,7 +68,20 @@ int main (void) {
     };
 
 
-    quickSort(unordered_array, 3, 5);
+    quickSort(unordered_array, 0, 4);
 
-    return 0;
+    int testResult = test(unordered_array, 5);
+
+    for(size_t i = 0; i < 5; ++i) {
+        printf("%.1f ", unordered_array[i]);
+    }
+
+    if(testResult == 1) {
+        printf("True\n");
+        return 0;
+    } else {
+        printf("False\n");
+        return 1;
+    }
+
 }
