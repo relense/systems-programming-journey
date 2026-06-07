@@ -13,11 +13,6 @@ void partition(double unordered_array[], size_t start, size_t end, size_t pivot_
 
     size_t i = start;
     while (i <= big_ends) {
-        if(i == pivot_index) {
-            ++i;
-            continue;
-        }
-
         if(unordered_array[i] < pivot_value) {
             double temp = unordered_array[i];
             unordered_array[i] = unordered_array[small_ends];
