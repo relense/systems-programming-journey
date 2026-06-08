@@ -1,6 +1,6 @@
 # Week 1 - C Basics Revival
 
-## Compile
+## Compile Example
 
 ```bash
 gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
@@ -41,3 +41,8 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
 ```bash
    ./hello
 ```
+
+# Tasks
+
+- Merge sort - WORKING
+- Quick Sort - WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
