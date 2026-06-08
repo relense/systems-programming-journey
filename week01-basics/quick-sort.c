@@ -11,23 +11,22 @@ void quickSort (double unordered_array[], size_t start, size_t end) {
     double pivot = unordered_array[start];
 
     while (1) {
-        if(unordered_array[small_ends] <= pivot) {
+        while(unordered_array[small_ends] <= pivot) {
             ++small_ends;
-        } 
+        }
 
-        if(unordered_array[big_ends] > pivot) {
+        while( unordered_array[big_ends] > pivot) {
             --big_ends;
         }
 
-        if(unordered_array[small_ends] >= pivot && unordered_array[big_ends] < pivot) {
-            double temp = unordered_array[small_ends];
-            unordered_array[small_ends] = unordered_array[big_ends];
-            unordered_array[big_ends] = temp;
-        }
-
-        if(small_ends >= big_ends) {
+        if(small_ends > big_ends) {
             break;
         }
+    
+        double temp = unordered_array[small_ends];
+        unordered_array[small_ends] = unordered_array[big_ends];
+        unordered_array[big_ends] = temp;
+     
     }
 
     unordered_array[start] = unordered_array[big_ends];
