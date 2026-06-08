@@ -5,48 +5,37 @@ void quickSort (double unordered_array[], size_t start, size_t end) {
     if(start >= end) {
         return;
     }
-
+    
     size_t small_ends = start;
     size_t big_ends = end;
-    double pivot_value = unordered_array[start + (end - start) / 2];
+    double pivot = unordered_array[start];
 
-    size_t i = start;
-    while (i <= big_ends) {
-        if(unordered_array[i] < pivot_value) {
-            double temp = unordered_array[i];
-            unordered_array[i] = unordered_array[small_ends];
-            unordered_array[small_ends] = temp;
+    while (1) {
+        if(unordered_array[small_ends] <= pivot) {
             ++small_ends;
-            ++i;
-        } else {
-            double temp = unordered_array[i];
-             unordered_array[i] = unordered_array[big_ends];
-             unordered_array[big_ends] = temp;
-             if(big_ends > 0) {
-                 --big_ends;
-             } else {
-                ++i;
-             }
-        }       
-    }
+        } 
 
-    if(big_ends >= small_ends  && big_ends <= end) {
-        for(size_t i = small_ends; i <= big_ends; ++i) {
-            unordered_array[i] = pivot_value;
+        if(unordered_array[big_ends] > pivot) {
+            --big_ends;
+        }
+
+        if(unordered_array[small_ends] >= pivot && unordered_array[big_ends] < pivot) {
+            double temp = unordered_array[small_ends];
+            unordered_array[small_ends] = unordered_array[big_ends];
+            unordered_array[big_ends] = temp;
+        }
+
+        if(small_ends >= big_ends) {
+            break;
         }
     }
 
+    unordered_array[start] = unordered_array[big_ends];
+    unordered_array[big_ends] = pivot;
 
-    if(small_ends > start) {
-        quickSort(unordered_array, start, small_ends - 1);
-    }
-
-    if(big_ends > start && big_ends < end) { 
-        quickSort(unordered_array, big_ends + 1, end);
-    }
-    
+    quickSort(unordered_array, start, big_ends - 1);
+    quickSort(unordered_array, big_ends + 1, end);
 }
-
 
 int test(double const array[], size_t array_size) {
     for(size_t i = 1; i < array_size; ++i) {
@@ -57,7 +46,6 @@ int test(double const array[], size_t array_size) {
 
     return 1;
 }
-
 int main (void) {
   double unordered_array[5] = {
         [0] = 5.0,
