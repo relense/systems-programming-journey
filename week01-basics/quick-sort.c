@@ -15,7 +15,7 @@ void quickSort (double unordered_array[], size_t start, size_t end) {
             ++small_ends;
         }
 
-        while( unordered_array[big_ends] > pivot) {
+        while(unordered_array[big_ends] > pivot) {
             --big_ends;
         }
 
