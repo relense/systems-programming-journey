@@ -44,5 +44,7 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
 
 # Tasks
 
-- Merge sort - WORKING
-- Quick Sort - WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
+- Merge sort - Challenge 1, DONE
+- Quick Sort - Challenge 1, WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
+- Numerical Derivative - Challenge 2, DONE
+- Pi Decimals - Chalenge 3, DONE
