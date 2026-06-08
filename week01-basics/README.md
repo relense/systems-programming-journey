@@ -42,7 +42,7 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
    ./hello
 ```
 
-# Tasks
+## Challenges of Modern C book by Jens Gustedt
 
 - Merge sort - Challenge 1, DONE
 - Quick Sort - Challenge 1, WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
