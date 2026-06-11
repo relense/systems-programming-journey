@@ -40,6 +40,12 @@ void find_compress(size_t parent[], size_t element_index) {
     find_replace(parent, element_index, root_value);
 }
 
+void create_union(size_t parent[], size_t left_elem, size_t right_elem) {
+    find_compress(parent, left_elem);
+    size_t root_value = find_root(parent, left_elem);
+    find_replace(parent, right_elem, root_value);
+}
+
 int main(void) {
     size_t parent[10] = {1, 2, 3, 4, 5, 5, 7, 8, 9, 9};
 
