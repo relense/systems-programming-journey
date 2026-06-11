@@ -4,8 +4,9 @@ size_t find_root(size_t parent[], size_t element_index) {
 
     size_t current_index = element_index;
     while(1) {
-        if(parent[current_index] == current_index) return parent[current_index];
-        else if (parent[current_index] != current_index) {
+        if(parent[current_index] == current_index) {
+            return parent[current_index];
+        }  else {
             current_index = parent[current_index];
         }
         
@@ -32,6 +33,11 @@ void find_replace(size_t parent[], size_t element_index, size_t new_value) {
         }
         
     }
+}
+
+void find_compress(size_t parent[], size_t element_index) {
+    size_t root_value = find_root(parent, element_index);
+    find_replace(parent, element_index, root_value);
 }
 
 int main(void) {
