@@ -48,3 +48,4 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
 - Quick Sort - Challenge 1, WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
 - Numerical Derivative - Challenge 2, DONE
 - Pi Decimals - Chalenge 3, DONE
+- Union-Find - Challenge 4, DONE
