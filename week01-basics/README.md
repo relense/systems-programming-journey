@@ -49,4 +49,5 @@ gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
 - Numerical Derivative - Challenge 2, DONE
 - Pi Decimals - Chalenge 3, DONE
 - Union-Find - Challenge 4, DONE
-- Complex Domain - Challeng 5, DONE
+- Complex Domain - Challenge 5, DONE
+- Linear Algebra - Challenge 6, DONE - Might do Gaussian Elimination in the future
