@@ -1,19 +1,28 @@
 # systems-programming-journey
 
-My journey mastering systems programming.
+Mastering systems programming with **Modern C** by Jens Gustedt.
 
-## Level 1: Foundations (Modern C Chapters 1-8)
+## Roadmap
 
-- Merge sort - Challenge 1, DONE
-- Quick Sort - Challenge 1, WIP, can sort an array from the first to the last index. Needs fixing to work a range inside an array.
-- Numerical Derivative - Challenge 2, DONE
-- Pi Decimals - Chalenge 3, DONE
-- Union-Find - Challenge 4, DONE
-- Complex Domain - Challenge 5, DONE
-- Linear Algebra - Challenge 6, DONE - Might do Gaussian Elimination in the future
+### [Level 1: Foundations](./modern-c-level01-foundations) (Chapters 1-8)
 
-## Level 2: Pointers & Memory (Chapters 9-13)
+- Union-Find, arrays, strings, sorting algorithms
+- **Status:** IN PROGRESS - 6/11 challenges completed
 
-## Level 3: Advanced (Chapters 16-21)
+### [Level 2: Pointers & Memory](./modern-c-level02-memory-pointers) (Chapters 9-13)
 
-## Capstone: Mini Redis (target: Q3 2026)
+- Coming soon
+
+### [Level 3: Advanced](./modern-c-level03-advanced) (Chapters 16-21)
+
+- Coming soon
+
+### [Capstone: Mini Redis](./mini-redis)
+
+- **Target:** Q3 2026
+
+---
+
+## Quick Start
+
+See individual directories for details and compilation instructions.

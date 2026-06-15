@@ -1,4 +1,27 @@
-# Compile Example
+# Level 1: Foundations (Modern C Chapters 1-8)
+
+## Projects
+
+✅ **Completed:**
+
+- Hello World, Getting Started
+- Merge Sort
+- Numerical Derivative
+- Pi Decimals
+- Union-Find
+- Complex Numbers
+- Linear Algebra
+
+🔄 **Work in Progress:**
+
+- Quick Sort (range-based)
+
+⏳ **Not Started:**
+
+- Gaussian Elimination
+- Graph algorithms
+
+## Compile
 
 ```bash
 gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g hello.c -o hello
