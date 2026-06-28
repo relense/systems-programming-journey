@@ -121,7 +121,21 @@ circular* circular_resize(circular* c, size_t new_cap) {
 
             //Make the array smaller
             } else {
+                ntab = c->tab;
+                size_t upper_len = ocap - ostart; // elements from circular->start until the end
+                size_t lower_len = len - upper_len; // elements from the begining of the array until the wrap.
+                
+                if(ostart + len > ocap) {
+                    memmove(ntab + upper_len, ntab, lower_len * sizeof(double));
+                }
 
+                memmove(ntab, ntab + ostart, len * sizeof(double));
+                nstart = 0;
+               
+
+                ntab = realloc(c->tab, sizeof(double[new_cap]));
+                //Allocation fail
+                if(!ntab) return NULL;
             }
 
             *c = (circular) {
