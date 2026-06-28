@@ -1,7 +1,7 @@
 # Level 2: Circular Buffer
 
-The circular buffer served as a purpose to test allocate and free memory and also how to manipulate it.
-For this I the structure how a circular buffer was implemented along with the corresponding functions that allow to manipulate.
+This exercise implements a circular buffer in C, used to practice manual memory management, pointer arithmetic, and dynamic allocation with `malloc` and `free`.
+The implementation covers both stack and heap allocation patterns, along with the core operations expected from a circular buffer data structure.
 
 ## Funcitions
 
@@ -22,6 +22,7 @@ For this I the structure how a circular buffer was implemented along with the co
 - circular_element
 - circular_resize
 - circular_getlength
+- circular_getcap
 
 ## Compile
 
