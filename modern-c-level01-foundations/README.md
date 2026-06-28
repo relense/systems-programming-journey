@@ -18,9 +18,6 @@
 
 ⏳ **Not Started:**
 
-- Gaussian Elimination
-- Graph algorithms
-
 ## Compile
 
 ```bash
