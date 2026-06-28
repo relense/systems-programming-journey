@@ -46,9 +46,48 @@ void circular_delete(circular* c) {
 };
 
 double* circular_element(circular const* c, size_t pos) {
+    if(c) {
+        size_t real_pos = circular_getpos(c, pos);
+        return &c->tab[real_pos];
+    } 
 
+    return NULL;
 }
 
 size_t circular_getlength(circular const* c) {
+    if(c) {
+        return c->len;
+    }
+
+    return 0;
+}
+
+circular* circular_append(circular* c, double value) {
+    if(c && c->len < c->cap) {
+        size_t pos = circular_getpos(c, c->len);
+        c->tab[pos] = value;
+        c->len++;
+
+        return c;
+    }
+
+    return NULL;
+}
+
+double circular_pop(circular* c) {
+    if(c && c->len > 0) {
+        size_t pos = circular_getpos(c, 0);
+        double value = c->tab[pos];
+        c->start = circular_getpos(c, 1);
+        c->len--;
+
+        return value;
+    }
+
+    return 0;
+}
+
+
+circular* circular_resize(circular* c, size_t cap) {
     
 }
