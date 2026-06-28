@@ -32,7 +32,7 @@ circular* circular_init(circular* c, size_t cap) {
 void circular_destroy(circular* c) {
     if(c) {
         free(c->tab);
-        circular_init(c, 0);
+        *c = (circular){ };
     }
 }
 
@@ -46,7 +46,7 @@ void circular_delete(circular* c) {
 };
 
 double* circular_element(circular const* c, size_t pos) {
-    if(c) {
+    if(c && pos < c->len) {
         size_t real_pos = circular_getpos(c, pos);
         return &c->tab[real_pos];
     } 
@@ -88,6 +88,49 @@ double circular_pop(circular* c) {
 }
 
 
-circular* circular_resize(circular* c, size_t cap) {
-    
+circular* circular_resize(circular* c, size_t new_cap) {
+    if(c) {
+        size_t len = c->len;
+        if(len > new_cap) return NULL;
+
+        size_t ocap = c->cap;
+        if(ocap != new_cap) {
+            size_t ostart = circular_getpos(c, 0);
+            size_t nstart = ostart;
+            double* otab = c->tab;
+            double* ntab;
+
+            //Make the array bigger
+            if(new_cap > ocap) {
+                ntab = realloc(c->tab, sizeof(double[new_cap]));
+                //Allocation fail
+                if(!ntab) return NULL;
+
+                //This is to check if the array is in separate parts. If ostart + len > ocap means there is a wrap around
+                if(ostart + len > ocap) {
+                    size_t upper_len = ocap - ostart; // elements from circular->start until the end
+                    size_t lower_len = len - upper_len; // elements from the begining of the array until the wrap.
+
+                    if(lower_len <= (new_cap - ocap)) { // if the new space is enough for the elements in the lower_len. Move the elements to the end of the old array
+                        memcpy(ntab + ocap, ntab, lower_len * sizeof(double));
+                    } else { // if the new space is not enough for the elements in the lower part of the array, move the upper part to the end of the array.
+                        nstart = new_cap - upper_len; // calculate where the new start of the array begins.
+                        memmove(ntab + nstart, ntab + ostart, upper_len * sizeof(double));
+                    }
+                }
+
+            //Make the array smaller
+            } else {
+
+            }
+
+            *c = (circular) {
+                .cap = new_cap,
+                .start = nstart,
+                .len = len,
+                .tab = ntab,
+            };
+        }   
+    }
+    return c;
 }

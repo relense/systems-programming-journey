@@ -25,7 +25,7 @@ void circular_delete(circular* c);
 circular* circular_append(circular* c, double value);
 double circular_pop(circular* c);
 double* circular_element(circular const* c, size_t pos);
-circular* circular_resize(circular* c, size_t cap);
+circular* circular_resize(circular* c, size_t new_cap);
 size_t circular_getlength(circular const* c);
 
 #endif
