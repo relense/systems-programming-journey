@@ -5,14 +5,14 @@
 ✅ **Completed:**
 
 - Circular Buffer
+- Linked List
 
 🔄 **Work in Progress:**
 
-- Linked List
+- Dynamic Array
 
 ⏳ **Not Started:**
 
-- Dynamic Array
 - Hash Map
 - Binary Search Tree
 - Thread-safe Queue
