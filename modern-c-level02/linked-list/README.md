@@ -1,18 +1,26 @@
 # Level 3: Linked List
 
-This exercise implements a linked list in C, used to practice manual memory management, pointer arithmetic, and dynamic allocation with `malloc` and `free`.
+This exercise implements a singly linked list in C, where each node holds a value and a pointer to the next node.
+The goal was to practice heap allocation per node, pointer manipulation across a dynamic chain of elements.
 
-## Init and destroy funcitions
+## Funcitions
+
+### Functions to store in the stack
 
 - linked_list_init
 - linked_list_destroy
+
+### Functions to store in the heap
+
+- linked_list_new
+- linked_list_delete
 
 ### Operations
 
 - linked_list_append
 - linked_list_remove
 - linked_list_get_elem
-- linked_list_get_lenght
+- linked_list_get_length
 
 ## Compile
 

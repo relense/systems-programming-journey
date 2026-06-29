@@ -16,14 +16,18 @@ struct linked_list {
     element* head;
 };
 
-//init and destroy
+//part 1 - struct in stack
 linked_list* linked_list_init(linked_list* list);
 void linked_list_destroy(linked_list* list);
 
+//part 2 - struct in heap
+linked_list* linked_list_new(void);
+void linked_list_delete(linked_list* list);
+
 //operations
 linked_list* linked_list_append(linked_list* list, double value);
-element* linked_list_remove(linked_list* list, size_t pos);
-element* linked_list_get_elem(linked_list* list, size_t pos);
-size_t linked_list_get_lenght(linked_list const* list);
+double linked_list_remove(linked_list* list, size_t pos);
+element* linked_list_get_elem(linked_list const* list, size_t pos);
+size_t linked_list_get_length(linked_list const* list);
 
 #endif
