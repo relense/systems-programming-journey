@@ -1,4 +1,4 @@
-# Level 2: The real deal (Modern C Chapters 9-15)
+# Level 2: Pointers & Memory(Modern C Chapters 9-15)
 
 ## Projects
 
