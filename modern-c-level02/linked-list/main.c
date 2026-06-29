@@ -60,5 +60,4 @@ int main(void) {
     printf("The list has a size of %zu\n", linked_list_get_length(list2));
 
     linked_list_delete(list2);
-    printf("Head is %s\n", list.head == NULL ? "NULL" : "not NULL");
 }
