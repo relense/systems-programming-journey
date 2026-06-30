@@ -42,8 +42,10 @@ circular* circular_new(size_t cap) {
 }
 
 void circular_delete(circular* c) {
-    circular_destroy(c);
-    free(c);
+    if(c) {
+        circular_destroy(c);
+        free(c);
+    }
 };
 
 double* circular_element(circular const* c, size_t pos) {
