@@ -32,8 +32,10 @@ linked_list* linked_list_new(void) {
 }
 
 void linked_list_delete(linked_list* list) {
-    linked_list_destroy(list);
-    free(list);
+    if(list) {
+        linked_list_destroy(list);
+        free(list);
+    }
 }
 
 linked_list* linked_list_append(linked_list* list, double value) {
