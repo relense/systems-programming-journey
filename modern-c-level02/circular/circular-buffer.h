@@ -13,11 +13,11 @@ struct circular {
     double* tab;    //array in heap;    
 };
 
-// part 1 -- existent struct
+// part 1 -- struct in stack
 circular* circular_init(circular* c, size_t cap);
 void circular_destroy(circular* c);
 
-//part 2 - struct in heap
+//part 2 -- struct in heap
 circular* circular_new(size_t cap);
 void circular_delete(circular* c);
 
