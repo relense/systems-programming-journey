@@ -48,7 +48,7 @@ double dynamic_array_remove(dynamic_array* d_array, size_t pos) {
     
 }
 
-double* dynamic_array_element(dynamic_array* d_array, size_t pos) {
+double* dynamic_array_get_element(dynamic_array* d_array, size_t pos) {
     if(d_array && pos < d_array->len) {
        return &d_array->data[pos];
     }
