@@ -19,7 +19,7 @@ This exercise implements a dynamic array in C, used to practice manual memory ma
 - dynamic_array_append
 - dynamic_array_insert
 - dynamic_array_remove
-- dynamic_array_element
+- dynamic_array_get_element
 - dynamic_array_resize
 - dynamic_array_get_length
 - dynamic_array_get_cap

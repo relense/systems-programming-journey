@@ -57,7 +57,18 @@ double* dynamic_array_get_element(dynamic_array* d_array, size_t pos) {
 }
 
 dynamic_array* dynamic_array_resize(dynamic_array* d_array, size_t new_cap) {
-    
+    if(d_array && new_cap >= d_array->len) {
+       double* data = realloc(d_array->data, sizeof(double[new_cap]));
+
+       if(!data) return NULL;
+
+      d_array->data = data;
+      d_array->cap = new_cap;
+
+       return d_array;
+    }
+
+    return NULL;
 }
 
 size_t dynamic_array_get_length(dynamic_array const* d_array) {
