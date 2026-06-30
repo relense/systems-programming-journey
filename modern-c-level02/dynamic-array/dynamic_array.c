@@ -26,7 +26,10 @@ dynamic_array* dynamic_array_init(dynamic_array* d_array, size_t cap) {
             };
             
             //if the allocation fails
-            if(!d_array->data) d_array->cap = 0;
+            if(!d_array->data) {
+                d_array->cap = 0;
+                return NULL;
+            }
         } else {
             *d_array = (dynamic_array) { };
         }
@@ -43,7 +46,18 @@ void dynamic_array_destroy(dynamic_array* d_array) {
 }
 
 dynamic_array* dynamic_array_new(size_t cap) {
-    return dynamic_array_init(malloc(sizeof(dynamic_array)), cap);
+    dynamic_array* d_array = malloc(sizeof(dynamic_array));
+
+    //if allocation failed
+    if(!d_array) return NULL;
+
+    //if for some reason the malloc inside init fails
+    if(!dynamic_array_init(d_array, cap)) {
+        free(d_array);
+        return NULL;
+    }
+
+    return d_array;
 }
 
 void dynamic_array_delete(dynamic_array* d_array) {
@@ -105,7 +119,7 @@ double* dynamic_array_get_element(dynamic_array* d_array, size_t pos) {
 }
 
 dynamic_array* dynamic_array_resize(dynamic_array* d_array, size_t new_cap) {
-    if(d_array && new_cap >= d_array->len) {
+    if(d_array && new_cap > 0 && new_cap >= d_array->len) {
        double* data = realloc(d_array->data, sizeof(double[new_cap]));
 
        if(!data) return NULL;
