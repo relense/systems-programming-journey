@@ -56,12 +56,10 @@ int main(void) {
 
     printf("The array is %s\n", d_array.data == NULL ? "NULL" : "not NULL");
 
-
-     printf("\n\nCreate the dynamic array in the heap\n");
+    printf("\n\nCreate the dynamic array in the heap\n");
 
     dynamic_array* d_array2 = dynamic_array_new(5);
 
-    
     printf("How many elements in the array %zu\n", dynamic_array_get_length(d_array2));
     printf("What is the capacity of the array %zu\n", dynamic_array_get_cap(d_array2));
 
