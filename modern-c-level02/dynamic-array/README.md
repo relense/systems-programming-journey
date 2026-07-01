@@ -1,6 +1,8 @@
 # Level 2: Dynamic Array
 
-This exercise implements a dynamic array in C, used to practice manual memory management, pointer arithmetic, and dynamic allocation with `malloc` and `free`.
+This exercise implements a dynamic array in C. A resizable array that grows automatically when full.
+The goal was to practice heap allocation, pointer arithmetic, and `memmove` for element shifting on insert and remove operations.
+The implementation also introduces an internal helper function (`duplicate_size`) to encapsulate the growth logic, keeping `append` and `insert` clean.
 
 ## Funcitions
 
