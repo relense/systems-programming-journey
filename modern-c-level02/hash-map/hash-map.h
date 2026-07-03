@@ -2,10 +2,11 @@
 #define HASH_MAP_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct entry entry;
 
-typedef struct {
+ struct entry {
     char* key;
     double value;
     entry* next;
@@ -27,8 +28,8 @@ void hash_map_delete(hash_map* map);
 
 //operations
 hash_map* hash_map_put(hash_map* map, char* key, double value);
-hash_map* hash_map_remove(hash_map* map, char* key);
-hash_map* hash_map_get(hash_map* map, char* key);
+bool hash_map_remove(hash_map* map, char* key, double* out_value);
+double* hash_map_get(hash_map* map, char* key);
 size_t hash_map_get_length(hash_map* map);
 size_t hash_map_get_cap(hash_map* map);
 
