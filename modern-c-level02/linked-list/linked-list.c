@@ -1,4 +1,5 @@
 #include "linked-list.h"
+#include <stdlib.h>
 
 linked_list* linked_list_init(linked_list* list) {
     if(list) {
