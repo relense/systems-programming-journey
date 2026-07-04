@@ -1,4 +1,4 @@
-#include "hash-map.h";
+#include "hash-map.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -10,6 +10,7 @@ static void entry_destroy(entry* head) {
 
         while(current != NULL) {
             entry* next = current->next;
+            free(current->key);
             free(current);
             current = next;
             
@@ -29,35 +30,9 @@ static size_t hash(char* string) {
     return result;
 }
 
-static hash_map* resize_map(hash_map* map) {
-    if(map) {
-        size_t old_cap = map->cap;
-        size_t new_cap = map->cap + 10;
-        entry** new_buckets = realloc(map->buckets, sizeof(entry*[new_cap]));
-
-        if(!new_buckets) return NULL;
-
-        map->buckets = new_buckets;
-        map->cap = new_cap;
-
-        for(size_t i = 0; i < old_cap; i++) {
-            entry* head = map->buckets[i];
-
-            while(head != NULL) {
-                hash_map_insert(map, head);
-                head = head->next;
-            }
-        }
-
-        return map;
-
-    }
-
-    return NULL;
-}
-
 static hash_map* hash_map_insert(hash_map* map, entry* new_entry) {
     if(map && new_entry) {
+        new_entry->next = NULL;
         size_t bucket_index = hash(new_entry->key) % map->cap;
         entry* current_bucket = map->buckets[bucket_index];
     
@@ -72,6 +47,50 @@ static hash_map* hash_map_insert(hash_map* map, entry* new_entry) {
         }
     
         return map;
+    }
+
+    return NULL;
+}
+
+static hash_map* hash_map_resize(hash_map* map) {
+    if(map) {
+        //create space for the entries to be temporarily
+        entry** temp_entries = malloc(sizeof(entry*[map->len]));
+        //If allocation fails
+        if(!temp_entries) return NULL;
+
+        //to help keep track of the array position that comes next
+        size_t visited_entries = 0;
+        for(size_t i = 0; i < map->cap; i++){
+            entry* head = map->buckets[i];
+            while(head != NULL) {
+                temp_entries[visited_entries] = head;
+                visited_entries++;
+                head = head->next;
+            }
+        }
+
+        size_t new_cap = map->cap * 2;
+        entry** new_buckets = realloc(map->buckets, sizeof(entry*[new_cap]));
+
+        if(!new_buckets) return NULL;
+
+        map->buckets = new_buckets;
+        map->cap = new_cap;
+
+        //clear all hash_map entries to prepare for new cap increase and realocation;
+        for(size_t i = 0; i < map->cap; i++) {
+            map->buckets[i] = NULL;
+        }
+
+        for(size_t j = 0; j < map->len; j++) {
+            hash_map_insert(map, temp_entries[j]);
+        }
+    
+        free(temp_entries);
+
+        return map;
+
     }
 
     return NULL;
@@ -107,6 +126,10 @@ hash_map* hash_map_init(hash_map* map, size_t cap) {
             if(!map->buckets) {
                 map->cap = 0;
                 return NULL;
+            }
+
+            for(size_t i = 0; i < cap; i++) {
+                map->buckets[i] = NULL;
             }
 
         } else {
@@ -159,7 +182,7 @@ hash_map* hash_map_put(hash_map* map, char* key, double value) {
 
         double load_factor = (double) map->len / map->cap;
         if(load_factor > 0.75) {
-            //resize
+            if(!hash_map_resize(map)) return NULL;
         }
 
         entry* new_entry = malloc(sizeof(entry));
