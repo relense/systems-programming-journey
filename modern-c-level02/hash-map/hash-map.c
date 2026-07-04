@@ -31,10 +31,47 @@ static size_t hash(char* string) {
 
 static hash_map* resize_map(hash_map* map) {
     if(map) {
-        hash_map* new_map = NULL;
+        size_t old_cap = map->cap;
         size_t new_cap = map->cap + 10;
+        entry** new_buckets = realloc(map->buckets, sizeof(entry*[new_cap]));
+
+        if(!new_buckets) return NULL;
+
+        map->buckets = new_buckets;
+        map->cap = new_cap;
+
+        for(size_t i = 0; i < old_cap; i++) {
+            entry* head = map->buckets[i];
+
+            while(head != NULL) {
+                hash_map_insert(map, head);
+                head = head->next;
+            }
+        }
+
+        return map;
+
+    }
+
+    return NULL;
+}
+
+static hash_map* hash_map_insert(hash_map* map, entry* new_entry) {
+    if(map && new_entry) {
+        size_t bucket_index = hash(new_entry->key) % map->cap;
+        entry* current_bucket = map->buckets[bucket_index];
     
-        if(!hash_map_init(new_map, new_cap)) return NULL;
+        if(!current_bucket) {
+            map->buckets[bucket_index] = new_entry;
+        } else {
+            while(current_bucket->next != NULL) {
+                current_bucket = current_bucket->next;
+            }
+    
+            current_bucket->next = new_entry;
+        }
+    
+        return map;
     }
 
     return NULL;
@@ -125,8 +162,6 @@ hash_map* hash_map_put(hash_map* map, char* key, double value) {
             //resize
         }
 
-        size_t bucket_index = hash(key) % map->cap;
-
         entry* new_entry = malloc(sizeof(entry));
         if(!new_entry) return NULL;
 
@@ -136,18 +171,7 @@ hash_map* hash_map_put(hash_map* map, char* key, double value) {
             .next = NULL
         };
 
-        entry* current_bucket = map->buckets[bucket_index];
-
-        if(!current_bucket) {
-            map->buckets[bucket_index] = new_entry;
-        } else {
-            while(current_bucket->next != NULL) {
-                current_bucket = current_bucket->next;
-            }
-
-            current_bucket->next = new_entry;
-        }
-
+        if(!hash_map_insert(map, new_entry)) return NULL;
         map->len++;
         return map;
     }
