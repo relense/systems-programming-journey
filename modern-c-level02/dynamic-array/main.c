@@ -107,4 +107,6 @@ int main(void) {
 
     dynamic_array_delete(d_array2);
     d_array2 = NULL;
+
+    return EXIT_SUCCESS;
 }
