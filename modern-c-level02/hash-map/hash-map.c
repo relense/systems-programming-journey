@@ -1,7 +1,6 @@
 #include "hash-map.h"
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -126,7 +125,6 @@ hash_map* hash_map_init(hash_map* map, size_t cap) {
             //If allocation fails
             if(!map->buckets) {
                 map->cap = 0;
-                printf("ESTOU AQUI");
                 return NULL;
             }
 
