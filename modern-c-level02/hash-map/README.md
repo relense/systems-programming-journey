@@ -1,5 +1,7 @@
 # Level 2: Hash Map
 
+This exercise implements a hash map in C using separate chaining to resolve collisions, where each bucket holds a linked list of key-value entries. The implementation includes a djb2-based string hashing function, automatic resizing when the load factor exceeds 0.75 (which involves rehashing all existing entries into a new, larger bucket array), and dynamic key ownership via `strdup` so entries don't depend on the lifetime of the caller's string.
+
 ## Funcitions
 
 ### Functions to store in the stack
