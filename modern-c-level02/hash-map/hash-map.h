@@ -22,7 +22,7 @@ typedef struct {
 hash_map* hash_map_init(hash_map* map, size_t cap);
 void hash_map_destroy(hash_map* map);
 
-//part 2 -- sturct in heap
+//part 2 -- struct in heap
 hash_map* hash_map_new(size_t cap);
 void hash_map_delete(hash_map* map);
 
