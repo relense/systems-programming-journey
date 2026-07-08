@@ -30,5 +30,6 @@ void bst_delete(bst* tree);
 bst* bst_insert(bst* tree, double value);
 node* bst_remove(bst* tree, double value);
 node* bst_find(bst* tree, double value);
+double bst_get_length(bst* tree);
 
 #endif
