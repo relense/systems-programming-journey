@@ -2,6 +2,7 @@
 #define BINARY_SEARCH_TREE_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node node;
 
@@ -28,7 +29,7 @@ void bst_delete(bst* tree);
 
 //operations
 bst* bst_insert(bst* tree, double value);
-node* bst_remove(bst* tree, double value);
+node* bst_remove(bst* tree, double value, bool* found);
 node* bst_find(bst* tree, double value);
 size_t bst_get_length(bst* tree);
 
