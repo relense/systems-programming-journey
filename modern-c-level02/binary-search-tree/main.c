@@ -52,8 +52,10 @@ int main(void) {
     bst_insert(tree_heap, 6.0);
     printf("Tree size = %zu\n", bst_get_length(tree_heap));
     bst_insert(tree_heap, 10.0);
-    print_tree(tree_heap->root);
     printf("Tree size = %zu\n", bst_get_length(tree_heap));
+    bst_insert(tree_heap, 10.0);
+    printf("Tree size = %zu\n", bst_get_length(tree_heap));
+    print_tree(tree_heap->root);
     printf("Root value %f\n", tree_heap->root->value);
 
     node* found_node_heap = bst_find(tree_heap, 6.0);

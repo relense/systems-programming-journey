@@ -45,34 +45,38 @@ void bst_delete(bst* tree) {
     }
 }
 
-static node* insert_node(node* compare_node, double value) {
-        if(compare_node == NULL) {
-            node* new_node = malloc(sizeof(node));
-            if(!new_node) return NULL;
+static node* insert_node(node* compare_node, double value, bool* inserted) {
+    if(compare_node == NULL) {
+        node* new_node = malloc(sizeof(node));
+        if(!new_node) return NULL;
 
-            *new_node = (node) {
-                .left = NULL,
-                .right = NULL,
-                .value = value
-            };
+        *new_node = (node) {
+            .left = NULL,
+            .right = NULL,
+            .value = value
+        };
 
-            return new_node;
-        } else if (compare_node->value < value) {
-            compare_node->right = insert_node(compare_node->right, value);
-        } else if (compare_node->value > value) {
-            compare_node->left = insert_node(compare_node->left, value);
-        }
+        *inserted = true;
+        return new_node;
+    } else if (compare_node->value < value) {
+        compare_node->right = insert_node(compare_node->right, value, inserted);
+    } else if (compare_node->value > value) {
+        compare_node->left = insert_node(compare_node->left, value, inserted);
+    }
 
-        return compare_node;
+    return compare_node;
 }
 
 bst* bst_insert(bst* tree, double value) {
     if(tree) {
-        node* new_node = insert_node(tree->root, value);
-        if(!new_node) return NULL;
+        bool inserted = false;
+        node* new_node = insert_node(tree->root, value, &inserted);
 
         tree->root = new_node;
-        tree->len++;
+
+        if(inserted == true) {
+            tree->len++;
+        }
         return tree;
     }
 
@@ -80,11 +84,15 @@ bst* bst_insert(bst* tree, double value) {
 }
 
 static node* find_min(node* elem) {
-    if(elem->left == NULL) {
-        return elem;
-    } else {
-        return find_min(elem->left);
+    if(elem) {
+        if(elem->left == NULL) {
+            return elem;
+        } else {
+            return find_min(elem->left);
+        }
     }
+
+    return NULL;
 }
 
 static node* remove_node(node* current_node, double value, bool* found) {
