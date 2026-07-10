@@ -1,5 +1,7 @@
 # Level 2: Binary Search Tree
 
+This exercise implements a binary search tree in C, the first data structure in this series built around recursion instead of iteration. Insert, remove, and destroy are all recursive, with each level returning its (possibly updated) subtree root back to its caller. The remove operation handles all three standard cases (leaf, single child, and two children) using the in-order successor, the leftmost node of the right subtree, to replace a two-child node's value before recursively removing the successor itself.
+
 ## Funcitions
 
 ### Functions to store in the stack
