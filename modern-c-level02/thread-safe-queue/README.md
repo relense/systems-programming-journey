@@ -23,7 +23,7 @@ This exercise implements a thread safe FIFO queue in C, protected by a pthread m
 ## Compile
 
 ```bash
-gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g -o thread-safe-queue thread-safe-queue.c main.c -lpthread
+gcc -Wall -Wextra -Werror -std=c17 -fsanitize=address -g -o thread-safe-queue.out thread-safe-queue.c main.c -lpthread
 ```
 
 - **gcc** - The compiler. The program that transforms C into an executable.
