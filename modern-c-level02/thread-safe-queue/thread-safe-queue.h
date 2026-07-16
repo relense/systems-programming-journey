@@ -32,6 +32,6 @@ void th_queue_delete(th_queue* queue);
 //operations
 th_queue* th_queue_enqueue(th_queue* queue, double value);
 double th_queue_dequeue(th_queue* queue, bool* found);
-size_t th_queue_get_length(th_queue const* queue);
+size_t th_queue_get_length(th_queue* queue);
 
 #endif

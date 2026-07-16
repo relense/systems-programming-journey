@@ -27,6 +27,8 @@ void th_queue_destroy(th_queue* queue) {
     if(queue) {
         element* elem = NULL;
 
+        pthread_mutex_lock(&queue->queue_mutex);
+
         while(queue->len > 0) {
             elem = queue->head;
             queue->head = elem->next_elem;
@@ -38,6 +40,7 @@ void th_queue_destroy(th_queue* queue) {
         queue->head = NULL;
         queue->tail = NULL;
 
+        pthread_mutex_unlock(&queue->queue_mutex);
         pthread_mutex_destroy(&queue->queue_mutex);
         pthread_cond_destroy(&queue->queue_cond);
     }
@@ -129,7 +132,7 @@ double th_queue_dequeue(th_queue* queue, bool* found) {
     return value;
 }
 
-size_t th_queue_get_length(th_queue const* queue) {
+size_t th_queue_get_length(th_queue* queue) {
     if(queue) {
         pthread_mutex_lock(&queue->queue_mutex);
 
