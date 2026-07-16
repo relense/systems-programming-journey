@@ -13,6 +13,11 @@ th_queue* th_queue_init(th_queue* queue) {
         if(pthread_mutex_init(&queue->queue_mutex, NULL) != 0) {
             return NULL;
         }
+
+        if(pthread_cond_init(&queue->queue_cond, NULL) != 0) {
+            pthread_mutex_destroy(&queue->queue_mutex);
+            return NULL;
+        }
     }
 
     return queue;
@@ -34,6 +39,7 @@ void th_queue_destroy(th_queue* queue) {
         queue->tail = NULL;
 
         pthread_mutex_destroy(&queue->queue_mutex);
+        pthread_cond_destroy(&queue->queue_cond);
     }
 }
 
@@ -81,6 +87,7 @@ th_queue* th_queue_enqueue(th_queue* queue, double value) {
         queue->len++;
 
         pthread_mutex_unlock(&queue->queue_mutex);
+        pthread_cond_signal(&queue->queue_cond);
 
         return queue;
     }
@@ -94,29 +101,32 @@ double th_queue_dequeue(th_queue* queue, bool* found) {
 
     pthread_mutex_lock(&queue->queue_mutex);
 
-    if(queue->len > 0) {
-        double value = queue->head->value;
-
-        if(queue->head == queue->tail) {
-            free(queue->head);
-            queue->tail = NULL;
-            queue->head = NULL;
-        } else {
-           element* old_head = queue->head;
-           queue->head = queue->head->next_elem;
-           free(old_head);
-        }
-
-
-        *found = true;
-        queue->len--;
-
-        pthread_mutex_unlock(&queue->queue_mutex);
-        return value;
+    while(queue->len == 0) {
+        pthread_cond_wait(&queue->queue_cond, &queue->queue_mutex);
+        // Equivalent to:
+        // pthread_mutex_unlock(&queue->queue_mutex);
+        // wait for signal on &queue->queue_mutex
+        // pthread_mutex_lock(&queue->queue_mutex);
     }
 
+    double value = queue->head->value;
+
+    if(queue->head == queue->tail) {
+        free(queue->head);
+        queue->tail = NULL;
+        queue->head = NULL;
+    } else {
+        element* old_head = queue->head;
+        queue->head = queue->head->next_elem;
+        free(old_head);
+    }
+
+
+    *found = true;
+    queue->len--;
+
     pthread_mutex_unlock(&queue->queue_mutex);
-    return 0.0;
+    return value;
 }
 
 size_t th_queue_get_length(th_queue const* queue) {
