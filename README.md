@@ -1,28 +1,51 @@
 # systems-programming-journey
 
-Mastering systems programming with **Modern C** by Jens Gustedt.
+A hands-on path into systems programming, built through C, then Rust, aimed at a Mini Redis capstone and beyond.
 
 ## Roadmap
 
-### [Level 1: Foundations](./modern-c-level01-foundations) (Chapters 1-8)
+### [Level 1: C Foundations](./modern-c-level01-foundations)
 
-- Union-Find, arrays, strings, sorting algorithms
-- **Status:** IN PROGRESS - 6/11 challenges completed
+Core C fundamentals, covering basic syntax, sorting algorithms, numerical methods, and foundational data structures:
 
-### [Level 2: Pointers & Memory](./modern-c-level02-memory-pointers) (Chapters 9-13)
+- Hello World, Getting Started, Clock/Time
+- Linear Algebra, Numerical Derivative, Pi Decimals
+- Merge Sort, Quick Sort
+- Union-Find
+- Pointers
 
-- Coming soon
+**Status:** complete
 
-### [Level 3: Advanced](./modern-c-level03-advanced) (Chapters 16-21)
+### [Level 2: Pointers, Memory & Data Structures](./modern-c-level02)
 
-- Coming soon
+Six portfolio data structures, each with stack and heap allocation patterns, built from scratch:
 
-### [Capstone: Mini Redis](./mini-redis)
+- **[Circular Buffer](./modern-c-level02/circular)** — fixed-capacity ring buffer with wraparound indexing
+- **[Linked List](./modern-c-level02/linked-list)** — singly linked list with append/remove by position
+- **[Dynamic Array](./modern-c-level02/dynamic-array)** — auto-growing array with `memmove`-based insert/remove
+- **[Hash Map](./modern-c-level02/hash-map)** — separate chaining, djb2 hashing, automatic rehashing on load factor
+- **[Binary Search Tree](./modern-c-level02/binary-search-tree)** — recursive insert/remove/destroy, in-order successor deletion
+- **[Thread-Safe Queue](./modern-c-level02/thread-safe-queue)** — FIFO queue with `pthread_mutex` protection for concurrent access
 
-- **Target:** Q3 2026
+**Status:** complete
+
+### Mini Redis (C)
+
+A simplified Redis implementation in C, applying the data structures above to build networking, command parsing, and concurrent client handling.
+**Status:** not started
+
+### Level 3: Rust
+
+Learn Rust, then port the C data structures and the Mini Redis implementation, comparing how the language's ownership model replaces the manual discipline C requires.
+**Status:** not started
+
+### Mini Redis (Rust)
+
+The same Mini Redis, rebuilt in Rust.
+**Status:** not started
 
 ---
 
 ## Quick Start
 
-See individual directories for details and compilation instructions.
+Each exercise directory has its own README with compilation instructions and a short explanation of the design decisions behind it.
