@@ -1,4 +1,6 @@
-# Level 2: Pointers & Memory(Modern C Chapters 9-15)
+# Level 2: Pointers, Memory & Data Structures
+
+Six data structures built from scratch in C, each with stack and heap allocation patterns (init/destroy, new/delete), consistent error handling, and README documentation of the design decisions.
 
 ## Projects
 
@@ -6,13 +8,11 @@
 
 - Circular Buffer
 - Linked List
-
-🔄 **Work in Progress:**
-
 - Dynamic Array
-
-⏳ **Not Started:**
-
 - Hash Map
 - Binary Search Tree
 - Thread-safe Queue
+
+---
+
+Next: Mini Redis, applying these structures to build a working client-server system.
