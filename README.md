@@ -32,16 +32,19 @@ Six portfolio data structures, each with stack and heap allocation patterns, bui
 ### Mini Redis (C)
 
 A simplified Redis implementation in C, applying the data structures above to build networking, command parsing, and concurrent client handling.
+
 **Status:** not started
 
 ### Level 3: Rust
 
 Learn Rust, then port the C data structures and the Mini Redis implementation, comparing how the language's ownership model replaces the manual discipline C requires.
+
 **Status:** not started
 
 ### Mini Redis (Rust)
 
 The same Mini Redis, rebuilt in Rust.
+
 **Status:** not started
 
 ---
