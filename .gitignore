@@ -1,0 +1,22 @@
+# Debug symbols (macOS)
+*.dSYM/
+
+# Compiled executables (sem extensão, comuns em C)
+# Ajusta/remove se algum destes nomes coincidir com uma pasta real do projecto
+circular-buffer
+linked-list
+dynamic-array
+hash-map
+binary-search-tree
+thread-safe-queue
+
+# Object files
+*.o
+*.obj
+
+# AddressSanitizer / build artifacts
+*.out
+
+# Editor/OS files
+.DS_Store
+*.swp
