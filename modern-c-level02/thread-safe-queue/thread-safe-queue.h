@@ -18,6 +18,7 @@ struct th_queue {
     element* head;
     element* tail;
     pthread_mutex_t queue_mutex;
+    pthread_cond_t queue_cond;
 };
 
 //part 1 - struct in stack
