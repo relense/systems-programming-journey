@@ -26,6 +26,7 @@ Six portfolio data structures, each with stack and heap allocation patterns, bui
 - **[Hash Map](./modern-c-level02/hash-map)** — separate chaining, djb2 hashing, automatic rehashing on load factor
 - **[Binary Search Tree](./modern-c-level02/binary-search-tree)** — recursive insert/remove/destroy, in-order successor deletion
 - **[Thread-Safe Queue](./modern-c-level02/thread-safe-queue)** — FIFO queue with `pthread_mutex` protection for concurrent access
+- **[Echo Server](./modern-c-level02//echo-server/)** - multi threaded TCP echo server
 
 **Status:** complete
 

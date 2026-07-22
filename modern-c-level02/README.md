@@ -12,6 +12,7 @@ Six data structures built from scratch in C, each with stack and heap allocation
 - Hash Map
 - Binary Search Tree
 - Thread-safe Queue
+- Echo Server
 
 ---
 
