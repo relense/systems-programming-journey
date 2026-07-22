@@ -39,14 +39,10 @@ void* handle_client(void* args) {
     inet_ntop(their_addr.ss_family, get_in_addr((struct sockaddr*) &their_addr), client_ip_string, sizeof client_ip_string);
     printf("server: got connection from %s\n", client_ip_string);
 
+    
     // receive the data from the client and echo it back until the connection closes
     while((recv_bytes = recv(new_file_descriptor, buf, MAXDATASIZE - 1, 0)) > 0) {
-        if (recv_bytes > 0 && buf[recv_bytes- 1] == '\n') {
-            buf[recv_bytes - 1] = '\0';
-        } else {
-            buf[recv_bytes] = '\0';
-        }
-        
+        buf[recv_bytes] = '\0';
         printf("server: received '%s'\n", buf);
         
         send(new_file_descriptor, buf, recv_bytes, 0);
@@ -57,7 +53,6 @@ void* handle_client(void* args) {
     printf("server: client disconnected, waiting for new connections...\n");
 
     free(args);
-
     return NULL;
 }
 
@@ -148,6 +143,7 @@ int main(void) {
         pthread_t th;
         if(pthread_create(&th, NULL, &handle_client, data) != 0) {
             perror("failed to create thread");
+            close(new_file_descriptor);
             free(data);
             continue;
         } 
@@ -155,6 +151,8 @@ int main(void) {
         pthread_detach(th);
         
     }
+
+    close(socket_file_descriptor);
 
     return EXIT_SUCCESS;
 }
