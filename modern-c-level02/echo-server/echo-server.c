@@ -70,8 +70,10 @@ int main(void) {
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_UNSPEC; // can be either IPv4 or IPv6
     hints.ai_socktype = SOCK_STREAM; // TCP stream socket
-    hints.ai_flags = AI_PASSIVE;
+    hints.ai_flags = AI_PASSIVE; // use any of my local IPs (for a server, not connecting elsewhere)
 
+    // resolve a linked list of possible local addresses to listen on port 8080
+    // (NULL host + AI_PASSIVE = "any of my own interfaces"); result goes into
     if((get_addr_info_status = getaddrinfo(NULL, "8080", &hints, &server_info)) != 0) {
         fprintf(stderr, "gai error: %s\n", gai_strerror(get_addr_info_status));
         exit(1);
@@ -132,6 +134,7 @@ int main(void) {
         client_data* data = malloc(sizeof(client_data));
         if(!data) {
             perror("malloc failed");
+            close(new_file_descriptor);
             continue;
         }
         
