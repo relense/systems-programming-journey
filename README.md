@@ -30,11 +30,11 @@ Six portfolio data structures, each with stack and heap allocation patterns, bui
 
 **Status:** complete
 
-### Mini Redis (C)
+### [Mini Redis (C)](https://github.com/relense/mini-redis-c)
 
-A simplified Redis implementation in C, applying the data structures above to build networking, command parsing, and concurrent client handling.
+A simplified Redis implementation in C, applying the data structures above to build networking, RESP protocol parsing, and concurrent client handling.
 
-**Status:** not started
+**Status:** in progress
 
 ### Level 3: Rust
 
