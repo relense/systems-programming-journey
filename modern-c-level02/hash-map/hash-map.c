@@ -188,8 +188,11 @@ hash_map* hash_map_put(hash_map* map, char* key, double value) {
         entry* new_entry = malloc(sizeof(entry));
         if(!new_entry) return NULL;
 
+        char* copied_key = strdup(key);
+        if(!copied_key) return NULL;
+
         *new_entry = (entry) {
-            .key = strdup(key),
+            .key = strdup(copied_key),
             .value = value,
             .next = NULL
         };
